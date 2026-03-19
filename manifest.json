@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "SalesQL → AIESEC Marcall Tracker",
+  "version": "1.0",
+  "description": "Auto-insert SalesQL revealed contacts into AIESEC Marcall Tracker Google Sheet",
+
+  "permissions": [
+    "identity",
+    "storage"
+  ],
+
+  "host_permissions": [
+    "https://www.linkedin.com/*",
+    "https://sheets.googleapis.com/*",
+    "https://www.googleapis.com/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.linkedin.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {}
+  },
+
+  "oauth2": {
+    "client_id": "YOUR_GOOGLE_OAUTH_CLIENT_ID.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/spreadsheets",
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  },
+
+  "icons": {}
+}
